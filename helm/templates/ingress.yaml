@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: {{ include "tt.fullname" . }}
   labels:
-    {{- include "tt.labels" . | nindent 4 }}
+    {{- include "helm.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "tt.fullname" $ }}
+                name: {{ include "helm.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
